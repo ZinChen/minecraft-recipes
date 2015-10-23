@@ -1,25 +1,31 @@
-// main
+// main parser
 var result = [];
 var bg = {};
-
 
 //Object.keys(bg).length
 //762
 
 var getName = function($this) {
 	var name = '';
-	if ($this.data('minetip-text')) {
+	if ($this.data('minetip-text') && $this.data('minetip-title')) {
 		name = 
 			removeSymbolsFromBegin($this.data('minetip-text'),'&7') 
 			+ ' ' 
 			+ $this.data('minetip-title');
 	} else if($this.data('minetip-title')) {
 		name = $this.data('minetip-title');
-		if (name === '&d') {
+		if (name === '&d' || name === '&b') {
 			name = 'Golden Apple';
 		}
 	} else {
 		name = $this.find('a').attr('title');
+		
+	}
+	if (!name) {
+		name = 'empty';
+	}
+	if (name.indexOf(' (page does not exist)') > 0) {
+		name = name.substr(0, name.indexOf(' (page does not exist)'));
 	}
 	return name;
 }
@@ -37,7 +43,7 @@ recipeTables.each(function() {
 	var object = {};
 	var $this = $(this);
 	
-	var category = ''; // $this.closest('.load-page').find('h3 .mw-headline a').html();
+	var category = $this.closest('.load-page').find('h3 .mw-headline').html();
 	var name = [];
 	$this.find('.mcui-output .invslot-item').each(function() {
 		name.push(getName($(this)));
@@ -85,26 +91,15 @@ recipeTables.each(function() {
 $('.load-page-content > table > tbody > tr .invslot-item').each(function() {
 	var $this = $(this);
 	var name = getName($this);
-//	var name = '';
-//	if ($this.data('minetip-title')) {
-//		var text = $this.data('minetip-text') ? $this.data('minetip-text') : "";
-//		text = removeSymbolsFromBegin(text, '&7');
-//		name = $this.data('minetip-title');
-//		name = removeSymbolsFromBegin(name, '&d');
-//		name = text ? text + ' ' + name : name;
-//	} else {
-//		name = $this.find('a').attr('title');
-//	}
 
 	if(!bg[name]) {
 		var bgPos = $this.find('a span').css('background-position');
 		bg[name] = bgPos;
-//		bg[name].push(bgPos);
 	}
-//	if (bg[name].indexOf(bgPos) < 0) {
-//		bg[name].push()
-//	}
 });
 
 console.log(JSON.stringify(result));
 JSON.stringify(bg);
+
+//bg = JSON.parse(bgdata);
+//for (var b in bg) {$('.item').first().clone().appendTo('.container').find('.inner-item').css('background-position', bg[b]);}
