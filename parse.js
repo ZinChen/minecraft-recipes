@@ -27,6 +27,12 @@ var getName = function($this) {
 	if (name.indexOf(' (page does not exist)') > 0) {
 		name = name.substr(0, name.indexOf(' (page does not exist)'));
 	}
+	if (
+		!$this.closest(".mcui-output").length && 
+		$this.closest('td').prev().find('p:contains("Damaged")').length > 0
+	) {
+		name = "Damaged " + name;
+	}
 	return name;
 }
 
@@ -37,17 +43,30 @@ var removeSymbolsFromBegin = function(s, symbols) {
 	return s;
 }
 
+//$('.load-page-content').each(function() {
+//	var $this = $(this);
+//	var $title = $this.prev().find('.mw-headline');
+//	if($title.has('a').length) {
+//		var category = $title.find('a').html();
+//	} else {
+//		var category = $title.html();
+//	}
+//});
 
-var recipeTables = $('.load-page-content > table > tbody > tr');
-recipeTables.each(function() {
-	var object = {};
+$('.load-page-content> table > tbody > tr').each(function() {
 	var $this = $(this);
-	
-	var category = $this.closest('.load-page').find('h3 .mw-headline').html();
+	var object = {};
 	var name = [];
 	$this.find('.mcui-output .invslot-item').each(function() {
 		name.push(getName($(this)));
 	});
+
+	var $title = $this.closest('.load-page').find('.mw-headline');
+	if($title.has('a').length) {
+		var category = $title.find('a').html();
+	} else {
+		var category = $title.html();
+	}
 	
 	var recipes = [];
 	var count = $this.find('.animated').first().children().length;
@@ -61,7 +80,7 @@ recipeTables.each(function() {
 //	TODO add category "closest .load-page-content"
 //	get css background .find('.mcui-input > .mcui-row > .invslot .invslot-item a span').first().css('background-position');
 //	sort elements by name (?) or make other array with name as key
-	
+
 	$this.find('.mcui-input > .mcui-row > .invslot').each(function() {
 		if ($(this).find('.invslot-item').length === 0) {
 			for (var i = 0; i < count; i++) {
@@ -91,7 +110,7 @@ recipeTables.each(function() {
 $('.load-page-content > table > tbody > tr .invslot-item').each(function() {
 	var $this = $(this);
 	var name = getName($this);
-
+	
 	if(!bg[name]) {
 		var bgPos = $this.find('a span').css('background-position');
 		bg[name] = bgPos;

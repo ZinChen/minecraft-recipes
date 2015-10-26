@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+<!--	<script src="handlebars.runtime-v4.0.2.js"></script>-->
+<!--	<script src="jquery-latest.min.js"</script>-->
 	<script src="data.js"></script>
 	<script src="script.js"></script>
 </head>
@@ -14,7 +16,24 @@
 	</div>	
 	
 	<script id="item" type="text/x-handlebars-template">
-		<div class="item" title="{{name}}"><div class="inner-item" style="background-position: {{bg}}"></div></div>
+		<div id="{{i}}" class="item" title="{{name}}"><div class="inner-item" style="background-position: {{bg}}"></div></div>
+	</script>
+
+	<script id="recipe" type="text/x-handlebars-template">
+		<div class="item-recipe">
+			<div class="components">
+				{{#each components}}
+					<div class="component">
+						<div class="inner-item" title="{{name}}" 
+							{{#if bg}} style="background-position: {{bg}}"
+							{{else}} style="background: none" {{/if}}></div>
+					</div>
+				{{/each}}
+			</div>
+			<div class="recipe-result">
+				<div class="inner-item" title="{{name}}" style="background-position: {{bg}}"></div>
+			</div>
+		</div>
 	</script>
 </body>
 </html>
