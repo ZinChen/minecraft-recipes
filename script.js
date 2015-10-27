@@ -15,6 +15,7 @@ $(function() {
 		var $this = $(this);
 		var id = $this.attr('id');
 		var recipe = recipes[id];
+		console.log(recipe.position);
 		if ($this.hasClass('item--opened')) {
 			$this.replaceWith(itemTpl({
 				name: recipe.name[0],
@@ -22,6 +23,7 @@ $(function() {
 				i: id
 			}));
 		} else {
+			$this.removeAttr('title');
 			$this.html(recipeTpl({
 				name: recipe.name[0],
 				bg: bg[recipe.name[0]],
@@ -34,11 +36,14 @@ $(function() {
 
 
 	$.map(recipes, function(item, i) {
+		item.position = 0;
 		var name = item.name[0];
 		$('.container').append(itemTpl({name: name, bg: bg[name], i: i}));
 	});
 	
-	
+//	setInterval(function() {
+//		console.log('pip!');
+//	}, 1000);
 	// onlick place template with data 
 })
 
