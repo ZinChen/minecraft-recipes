@@ -52,6 +52,28 @@ var removeSymbolsFromBegin = function(s, symbols) {
 //		var category = $title.html();
 //	}
 //});
+var itemStackSizes = [];
+$('.load-page-content> table > tbody > tr .mcui-output').each(function() {
+	var $this = $(this);
+	var stackSize = $this.find('.invslot-stacksize');
+	if (stackSize.length > 0) {
+		itemStackSizes.push(stackSize.first().html());
+	} else {
+		itemStackSizes.push(1);
+	}
+});	
+
+$('.load-page-content> table > tbody > tr .mcui-output').each(function() {
+	var $this = $(this);
+	// $this.find('.invslot-stacksize').first(function() {
+	// 	var $this = $(this);
+	console.log($this.find('.invslot-stacksize').length);
+		if ($this.find('.invslot-stacksize').length > 0) {
+			console.log(getName($this) + ' : ' + $this.find('invslot-stacksize').html());
+		}
+	// });
+
+});
 
 $('.load-page-content> table > tbody > tr').each(function() {
 	var $this = $(this);
@@ -122,3 +144,15 @@ JSON.stringify(bg);
 
 //bg = JSON.parse(bgdata);
 //for (var b in bg) {$('.item').first().clone().appendTo('.container').find('.inner-item').css('background-position', bg[b]);}
+
+var mergeItems = function() {
+	var prev = recipes[1];
+	recipes.forEach(function(recipe, i, recipes) {
+		if (recipe.name[0] == prev.name[0] && recipe.name[0] != 'Golden Apple') {
+			// prev.recipes = prev.recipes.concat(recipe.recipes);
+			// recipes = recipes.splice(i, 1);
+			console.log(recipe.name[0]);
+		}
+		prev = recipe;
+	});
+}
