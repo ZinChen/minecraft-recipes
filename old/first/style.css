@@ -1,0 +1,89 @@
+.grid-Crafting_Table {
+    background: #C6C6C6;
+    border: outset 2px #999;
+    padding: 6px;
+    text-align: left !important;
+}
+
+.grid > .item, .grid > .default-item {
+    position: absolute;
+    margin: -18px 0 0 -18px;
+    top: 1em;
+    left: 1em;
+}
+
+.animated > *:not(.active):not(.skip), .paused > *:not(.active):not(.skip) {
+    display: none;
+}
+
+
+.grid {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center !important;
+    background-color: #8B8B8B;
+    border: 2px solid #373737;
+    border-right-color: #FFF;
+    border-bottom-color: #FFF;
+    width: 2em;
+    height: 2em;
+    vertical-align: bottom;
+}
+
+.grid-Crafting_Table .arrow, .grid-Crafting_Table .shapeless {
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.grid-Crafting_Table .arrow {
+    width: 40px;
+    padding-bottom: 5px;
+}
+
+.grid img {
+    padding: 2px;
+}
+
+.grid.output {
+    font-size: 24px;
+    /*float: left;*/
+}
+
+.grid > .item > .number {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-family: Minecraft;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 16px;
+    color: #FFF;
+    pointer-events: none;
+    text-shadow: 2px 2px 0 #3F3F3F;
+    filter: dropshadow(color=#3F3F3F,offx=2,offy=2);
+    z-index: 6;
+}
+
+.grid > .item > .number > a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+@font-face {
+    font-family: Minecraft;
+    src: url(http://hydra-media.cursecdn.com/hydra/fonts/minecraft.woff);
+}
+
+.grid-Crafting_Table {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+    padding: 10px;
+}
