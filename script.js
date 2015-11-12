@@ -7,18 +7,18 @@ var recipeTpl;
 
 var duplicates = [];
 
+var stacks = JSON.parse(itemStackSizes);
 var next = recipes[recipes.length - 2];
 for (var i = recipes.length - 1; i > 0; i--) {
+	recipes[i - 1].stack = parseInt(stacks[i - 1]);
 	var recipe = recipes[i];
 	var next = recipes[i - 1];
 	if (recipe.name[0] == next.name[0] && next.name[0] != 'Golden Apple') {
 		next.recipes = next.recipes.concat(recipe.recipes);
 		next.name = next.name.concat(recipe.name);
 		duplicates.push(i);
-		console.log(recipe.name[0]);
 		recipes.splice(i, 1);
 	}
-	recipe = next;
 }
 
 var items = [];
@@ -49,6 +49,16 @@ $(function() {
 	itemTpl = Handlebars.compile(itemSource);
 	recipeSource = $('#recipe').html();
 	recipeTpl = Handlebars.compile(recipeSource);
+
+	// $('.container').delegate('.item', 'hover', function)
+	$('.container').delegate('.item', 'mouseenter', function() {
+		// console.log(1);
+		// console.log($(this).attr('id'));
+		pause();
+	});
+	$('.container').delegate('.item', 'mouseleave', function() {
+		play();
+	})
 
 	$('.container').delegate('.item', 'click', function() {
 		pause();
@@ -94,7 +104,11 @@ $(function() {
 })
 var isPause = false;
 var pause = function() {
-	isPause = !isPause;
+	isPause = true;
+}
+
+var play = function() {
+	isPause = false;
 }
 
 var renderItem = function(id) {

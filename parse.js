@@ -123,6 +123,7 @@ $('.load-page-content> table > tbody > tr').each(function() {
 
 	object = {
 		'name': name,
+		'stack': itemStackSizes[result.length];
 		'category': category,
 		'recipes': recipes,
 	};
