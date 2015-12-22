@@ -24,7 +24,7 @@ $(function() {
 		var $this = $(this);
 		var id = $this.attr('id');
 		$this.toggleClass('item--opened');
-		renderItem(id);
+		renderItem(id, true);
 		pause();
 	});
 
@@ -46,7 +46,8 @@ $(function() {
 	setInterval(function() {
 		if (isPause) { return; }
 		for (var i = 0; i < animatedRecipes.length; i++) {
-			var recipe = recipes[animatedRecipes[i]];
+			var id = animatedRecipes[i];
+			var recipe = recipes[id];
 			var currentRecipe = recipe.recipePointer;
 			if (recipe.recipes.length - 1 === recipe.recipePointer) {
 				recipe.recipePointer = 0;
@@ -59,7 +60,7 @@ $(function() {
 			} else if (recipe.name.length !== 1) {
 				recipe.itemPointer++;
 			}
-			renderItem(i);
+			renderItem(id, false);
 		}
 	}, 1000);
 });
@@ -73,24 +74,57 @@ var play = function() {
 	isPause = false;
 }
 
-var renderItem = function(id) {
+var renderItem = function(id, itemChanged) {
+	if (itemChanged) {
+		changeItemTemplate(id);
+	} else {
+		changeItemAttributes(id);
+	}
+
+}
+
+var changeItemTemplate = function(id) {
 	var recipe = recipes[id];
 	var recipePos = recipe.recipePointer;
 	var itemPos = recipe.itemPointer;
 	var $this = $('#' + id);
+	var item = items[recipe.name[itemPos]];
 	if (!$this.hasClass('item--opened')) {
 		$this.replaceWith(itemTpl({
-			name: items[recipe.name[itemPos]].name,
-			bg: items[recipe.name[itemPos]].bgPos,
+			name: item.name,
+			bg: item.bgPos,
 			i: id
 		}));
 	} else {
 		$this.removeAttr('title');
 		$this.html(recipeTpl({
-			name: items[recipe.name[itemPos]].name,
-			bg: items[recipe.name[itemPos]].bgPos,
+			name: item.name,
+			bg: item.bgPos,
 			components: prepareRecipe(recipe.recipes[recipePos])
 		}));
+	}
+}
+
+var changeItemAttributes = function(id) {
+	var recipe = recipes[id];
+	var recipePos = recipe.recipePointer;
+	var itemPos = recipe.itemPointer;
+	var $this = $('#' + id);
+	var item = items[recipe.name[itemPos]];
+	if (!$this.hasClass('item--opened')) {
+		$this.find('.inner-item')
+			.attr('title', item.name)
+			.css('background-position', item.bgPos)
+	} else {
+		var components = prepareRecipe(recipe.recipes[recipePos]);
+		$this.find('.recipe-result .inner-item')
+			.attr('title', item.name)
+			.css('background-position', item.bgPos);
+		$this.find('.component .inner-item').map(function(i, el) {
+			var item = components[i];
+			$(el).attr('title', item.name)
+				.css('background-position', item.bg);
+		});
 	}
 }
 
