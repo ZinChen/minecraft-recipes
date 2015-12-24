@@ -5,7 +5,7 @@ var itemSource;
 var itemTpl;
 var recipeSource;
 var recipeTpl;
-
+var toggledRecipes = false;
 $(function() {
 	itemSource = $('#item').html();
 	itemTpl = Handlebars.compile(itemSource);
@@ -28,6 +28,34 @@ $(function() {
 		pause();
 	});
 
+	$('#search-recipe').keyup(function() {
+		var needle = 
+			$(this)
+				.val()
+				.trim()
+				.toLowerCase();
+
+		if (needle.length == 0) {
+			showAllRecipes();
+			return;
+		}
+
+		var foundedRecipes = foundRecipes(needle);
+
+		if (foundedRecipes !== null) {
+			showFoundRecipes(foundedRecipes);
+		}
+	});
+
+	$('#toggle-recipes-view').click(function() {
+		toggledRecipes = !toggledRecipes
+		if (toggledRecipes) {
+			$(this).html('Collapse all');
+		} else {
+			$(this).html('Expand all');
+		}
+		toggleAllRecipes();
+	});
 
 	for (var i = 0; i < recipes.length; i++) {
 		if (recipes[i].name.length > 1) {
@@ -123,7 +151,12 @@ var changeItemAttributes = function(id) {
 		$this.find('.component .inner-item').map(function(i, el) {
 			var item = components[i];
 			$(el).attr('title', item.name)
+				.css('background', 'none');
+			if (item.bg) {
+				$(el)
+				.removeAttr('style')
 				.css('background-position', item.bg);
+			}
 		});
 	}
 }
@@ -140,4 +173,51 @@ var prepareRecipe = function(recipe) {
 		result.push(item);
 	});
 	return result;
+}
+
+var foundRecipes = function(needle) {
+	if (needle.length == 0) {
+		return recipes;
+	}
+
+	var foundItems = [];
+	var foundRecipes = [];
+	for (var i = 0; i < items.length; i++) {
+		var name = items[i].name.toLowerCase();
+		if (name.indexOf(needle) > -1) {
+			foundItems.push(i);
+		}
+	};
+	for (var i = 0; i < recipes.length; i++) {
+		recipes[i].name.forEach(function(name){
+			if(foundItems.indexOf(name) > -1 &&
+				foundRecipes.indexOf(i) < 0
+				) {
+				foundRecipes.push(i);
+			}
+		});
+	};
+	return foundRecipes;
+}
+
+var showFoundRecipes = function(foundRecipes) {
+	for(var i = 0; i < recipes.length; i++) {
+		if (foundRecipes.indexOf(i) > -1) {
+			$('#' + i).show();
+		} else {
+			$('#' + i).hide();
+		}
+	}
+}
+
+var showAllRecipes = function() {
+	for(var i = 0; i < recipes.length; i++) {
+		$('#' + i).show();
+	}
+}
+
+var toggleAllRecipes = function() {
+	for (var i = 0; i < recipes.length; i++) {
+		$('#' + i).click();
+	}
 }
