@@ -9,8 +9,6 @@ body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-
-	font-family: 'Open Sans', sans-serif;;
 }
 
 body,
@@ -65,6 +63,7 @@ button {
 	padding: 5px 10px;
 
 	font-size: 15px;
+	font-family: 'Open Sans', sans-serif;
 }
 
 button:hover {
@@ -246,6 +245,7 @@ button:hover {
 	text-align: center;
 	font-size: 20px;
 	font-weight: 800;
+	font-family: 'Open Sans', sans-serif;
 	color: #565656;
 }
 
@@ -259,6 +259,7 @@ button:hover {
 	text-align: center;
 	font-weight: 600;
 	font-size: 20px;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .item-stack {
@@ -268,4 +269,5 @@ button:hover {
 	color: #fff;
 	text-shadow: 1px 1px 0 #000, 0px 1px 0 #000;
 	line-height: 7px;
+	font-family: 'Open Sans', sans-serif;
 }

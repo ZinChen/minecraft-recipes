@@ -48,13 +48,14 @@ $(function() {
 	});
 
 	$('#toggle-recipes-view').click(function() {
-		toggledRecipes = !toggledRecipes
+		toggledRecipes = !toggledRecipes;
 		if (toggledRecipes) {
+			expandAllRecipes(true);
 			$(this).html('Collapse all');
 		} else {
+			collapseAllRecipes(true);
 			$(this).html('Expand all');
 		}
-		toggleAllRecipes();
 	});
 
 	for (var i = 0; i < recipes.length; i++) {
@@ -223,8 +224,20 @@ var showAllRecipes = function() {
 	}
 }
 
-var toggleAllRecipes = function() {
+var expandAllRecipes = function(toggledRecipes) {
 	for (var i = 0; i < recipes.length; i++) {
-		$('#' + i).click();
+		var $item = $('#' + i);
+		if (!$item.hasClass('item--opened')) {
+			$item.click();
+		}
+	}
+}
+
+var collapseAllRecipes = function(toggledRecipes) {
+	for (var i = 0; i < recipes.length; i++) {
+		var $item = $('#' + i);
+		if ($item.hasClass('item--opened')) {
+			$item.click();
+		}
 	}
 }
