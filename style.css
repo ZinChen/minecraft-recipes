@@ -1,7 +1,9 @@
 body {
 	padding: 0;
 	margin: 0;
-	
+
+	color: #222;
+
 	background-image: url(img/minecraft-bkgnd.png);
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -44,11 +46,31 @@ img,
 .container {
 	max-width: 542px;
 	margin: 0 auto;
-	padding: 30px 15px;
+	padding: 10px 15px;
 
 	background-color: #434856;	
 /*	background-color: #515365;	*/
 	box-shadow: 0px 0px 5px 2px #272727;
+}
+
+h1.minecraft-header {
+	margin: 0;
+
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+	font-size: 80px;
+}
+
+h2.recipes-header {
+	margin: 0;
+	margin-bottom: 10px;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	font-size: 40px;
+
+	color: #aaa;
 }
 
 button {
