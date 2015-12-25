@@ -22,13 +22,14 @@
 			<button id="toggle-recipes-view" class="pull-right">Expand all</button>
 		</div>
 	</div>
-	
+
 	<script id="item" type="text/x-handlebars-template">
 		<div id="{{i}}" class="item"><div class="inner-item" title="{{name}}" style="background-position: {{bg}}"></div></div>
 	</script>
 
 	<script id="recipe" type="text/x-handlebars-template">
 		<div class="item-recipe">
+			<div class="recipe-title">{{name}}</div>
 			<div class="components">
 				{{#each components}}
 					<div class="component">
@@ -40,7 +41,9 @@
 			</div>
 			<div class="recipe-arrow"></div>
 			<div class="recipe-result">
-				<div class="inner-item" title="{{name}}" style="background-position: {{bg}}"></div>
+				<div class="inner-item" title="{{name}}" style="background-position: {{bg}}">
+					<div class="item-stack">{{stack}}</div>
+				</div>
 			</div>
 		</div>
 	</script>

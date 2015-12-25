@@ -127,6 +127,8 @@ var changeItemTemplate = function(id) {
 		$this.removeAttr('title');
 		$this.html(recipeTpl({
 			name: item.name,
+			stack: 
+				(recipe.stack > 1) ? recipe.stack : null,
 			bg: item.bgPos,
 			components: prepareRecipe(recipe.recipes[recipePos])
 		}));

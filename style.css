@@ -9,6 +9,8 @@ body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+
+	font-family: 'Open Sans', sans-serif;;
 }
 
 body,
@@ -42,7 +44,7 @@ img,
 }
 
 .container {
-	max-width: 540px;
+	max-width: 542px;
 	margin: 0 auto;
 	padding: 30px 15px;
 
@@ -62,7 +64,6 @@ button {
 	border-radius: 7px;
 	padding: 5px 10px;
 
-	font-family: 'Open Sans', sans-serif;
 	font-size: 15px;
 }
 
@@ -130,7 +131,8 @@ button:hover {
 	box-shadow        : 5px 7px 34px -9.1px;
 	-webkit-box-shadow: 5px 7px 34px -9.1px;
 	width: 246px;
-	height: 120px;
+	/*height: 120px;*/
+	height: auto;
 }
 
 .item--opened:hover {
@@ -243,7 +245,6 @@ button:hover {
 
 	text-align: center;
 	font-size: 20px;
-	font-family: 'Open Sans', sans-serif;
 	font-weight: 800;
 	color: #565656;
 }
@@ -251,4 +252,20 @@ button:hover {
 #toggle-recipes-view {
 	margin-top: 5px;
 	margin-bottom: 10px;
+}
+
+.recipe-title {
+	color: #555;
+	text-align: center;
+	font-weight: 600;
+	font-size: 20px;
+}
+
+.item-stack {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	color: #fff;
+	text-shadow: 1px 1px 0 #000, 0px 1px 0 #000;
+	line-height: 7px;
 }
