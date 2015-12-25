@@ -66,6 +66,10 @@ button {
 	font-size: 15px;
 }
 
+button:hover {
+	background: #efefef;
+}
+
 .item {
 	width: 32px;
 	height: 32px;
@@ -242,4 +246,9 @@ button {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 800;
 	color: #565656;
+}
+
+#toggle-recipes-view {
+	margin-top: 5px;
+	margin-bottom: 10px;
 }
