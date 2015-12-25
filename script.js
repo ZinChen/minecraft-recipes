@@ -172,6 +172,11 @@ var prepareRecipe = function(recipe) {
 		}
 		result.push(item);
 	});
+
+	//supafix some firework recipes
+	if (result.length == 8) {
+		result.push({name: null, bg: null});
+	}
 	return result;
 }
 
