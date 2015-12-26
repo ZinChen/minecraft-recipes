@@ -60,6 +60,7 @@ h1.minecraft-header {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 800;
 	font-size: 80px;
+	line-height: 70px;
 }
 
 h2.recipes-header {
@@ -68,7 +69,8 @@ h2.recipes-header {
 	text-align: center;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 600;
-	font-size: 40px;
+	font-size: 20px;
+	letter-spacing: 3px;
 
 	color: #aaa;
 }
