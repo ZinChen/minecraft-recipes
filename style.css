@@ -277,6 +277,9 @@ button:hover {
 
 .recipe-title {
 	height: 55px;
+
+	margin-top: 10px;
+
 	color: #555;
 	text-align: center;
 	font-weight: 600;
