@@ -3,6 +3,7 @@ body {
 	margin: 0;
 
 	color: #222;
+	font-family: 'Open Sans', sans-serif;
 
 	background-image: url(img/minecraft-bkgnd.png);
 	background-repeat: no-repeat;
@@ -57,7 +58,6 @@ h1.minecraft-header {
 	margin: 0;
 
 	text-align: center;
-	font-family: 'Open Sans', sans-serif;
 	font-weight: 800;
 	font-size: 80px;
 	line-height: 70px;
@@ -67,7 +67,6 @@ h2.recipes-header {
 	margin: 0;
 	margin-bottom: 10px;
 	text-align: center;
-	font-family: 'Open Sans', sans-serif;
 	font-weight: 600;
 	font-size: 20px;
 	letter-spacing: 3px;
@@ -87,7 +86,6 @@ button {
 	padding: 5px 10px;
 
 	font-size: 15px;
-	font-family: 'Open Sans', sans-serif;
 }
 
 button:hover {
@@ -269,7 +267,6 @@ button:hover {
 	text-align: center;
 	font-size: 20px;
 	font-weight: 800;
-	font-family: 'Open Sans', sans-serif;
 	color: #565656;
 }
 
@@ -279,11 +276,11 @@ button:hover {
 }
 
 .recipe-title {
+	height: 55px;
 	color: #555;
 	text-align: center;
 	font-weight: 600;
 	font-size: 20px;
-	font-family: 'Open Sans', sans-serif;
 }
 
 .item-stack {
@@ -293,5 +290,4 @@ button:hover {
 	color: #fff;
 	text-shadow: 1px 1px 0 #000, 0px 1px 0 #000;
 	line-height: 7px;
-	font-family: 'Open Sans', sans-serif;
 }
