@@ -291,3 +291,12 @@ button:hover {
 	text-shadow: 1px 1px 0 #000, 0px 1px 0 #000;
 	line-height: 7px;
 }
+
+.fa-pointer {
+	margin-top: 38px;
+	margin-left: -10px;
+
+	vertical-align: top;
+
+	color: #b3b3b3;
+}
