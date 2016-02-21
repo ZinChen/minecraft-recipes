@@ -17,12 +17,29 @@
 </head>
 <body>
 	<!-- <div id="test" style="position: absolue; z-index: 10; background-color: #ccc;"></div> -->
-	<div id="container" class="container">
+	<div id="container" class="container container-width-4">
 		<h1 class="minecraft-header">MINECRAFT</h1>
 		<h2 class="recipes-header">Crafting Recipes</h2>
 		<input id="search-recipe" class="search-input" type="text" placeholder="Search item">
 		<div class="row">
 			<button id="toggle-recipes-view" class="pull-right">Expand all</button>
+		</div>
+		<div id="control-menu">
+			<div class="control-menu__row">
+				<i class="control-label fa fa-th-large" title="Row Width"></i>
+				<select id="item-per-row">
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4" selected>4</option>
+				</select>
+			</div>
+			<div class="control-menu__row">
+				<i id="backward-recipes" class="control-button fa fa-backward"></i>
+				<i id="forward-recipes" class="control-button fa fa-forward"></i>
+			</div>
+			<div class="control-menu__row">
+				<i id="pause-recipes" class="control-button fa fa-pause"></i>
+			</div>
 		</div>
 	</div>
 

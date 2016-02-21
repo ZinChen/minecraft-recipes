@@ -13,10 +13,16 @@ $(function() {
 	recipeTpl = Handlebars.compile(recipeSource);
 
 	$('.container').delegate('.item', 'mouseenter', function() {
-		pause();
+		if (!isPauseButtonPressed) {
+			pause();
+			setPauseIcon();
+		}
 	});
 	$('.container').delegate('.item', 'mouseleave', function() {
-		play();
+		if (!isPauseButtonPressed) {
+			play();
+			setPauseIcon();
+		}
 	})
 
 	$('.container').delegate('.item', 'click', function() {
@@ -58,6 +64,37 @@ $(function() {
 		}
 	});
 
+	$('#item-per-row').change(function() {
+		var value = $(this).val();
+		$('#container').attr('class',
+			$('#container')
+				.attr('class')
+				.replace(/\bcontainer-width-\d+\b/g, '')
+			);
+		switch(value) {
+			case "3":
+				$('#container').addClass('container-width-3');
+			break;
+			case "4":
+				$('#container').addClass('container-width-4');
+			break;
+		}
+	});
+
+	$('#forward-recipes').click(function() {
+		forwardRecipes();
+	});
+
+	$('#backward-recipes').click(function() {
+		backwardRecipes();
+	});
+
+	$('#pause-recipes').click(function() {
+		isPauseButtonPressed = !isPause;
+		togglePause();
+		setPauseIcon();
+	});
+
 	for (var i = 0; i < recipes.length; i++) {
 		if (recipes[i].name.length > 1) {
 			animatedRecipes.push(i);
@@ -74,33 +111,22 @@ $(function() {
 	
 	setInterval(function() {
 		if (isPause) { return; }
-		for (var i = 0; i < animatedRecipes.length; i++) {
-			var id = animatedRecipes[i];
-			var recipe = recipes[id];
-			var currentRecipe = recipe.recipePointer;
-			if (recipe.recipes.length - 1 === recipe.recipePointer) {
-				recipe.recipePointer = 0;
-			} else if (recipe.recipes.length !== 1) {
-				recipe.recipePointer++;
-			}
-			var currentItem = recipe.itemPointer;
-			if (recipe.name.length - 1 === recipe.itemPointer) {
-				recipe.itemPointer = 0;
-			} else if (recipe.name.length !== 1) {
-				recipe.itemPointer++;
-			}
-			renderItem(id, false);
-		}
+		forwardRecipes();
 	}, 1000);
 });
 
 var isPause = false;
+var isPauseButtonPressed;
 var pause = function() {
 	isPause = true;
 }
 
 var play = function() {
 	isPause = false;
+}
+
+var togglePause = function() {
+	isPause = !isPause;
 }
 
 var renderItem = function(id, itemChanged) {
@@ -241,5 +267,57 @@ var collapseAllRecipes = function(toggledRecipes) {
 		if ($item.hasClass('item--opened')) {
 			$item.click();
 		}
+	}
+}
+
+var forwardRecipes = function() {
+	for (var i = 0; i < animatedRecipes.length; i++) {
+		var id = animatedRecipes[i];
+		var recipe = recipes[id];
+		var currentRecipe = recipe.recipePointer;
+		if (recipe.recipes.length - 1 === recipe.recipePointer) {
+			recipe.recipePointer = 0;
+		} else if (recipe.recipes.length !== 1) {
+			recipe.recipePointer++;
+		}
+		var currentItem = recipe.itemPointer;
+		if (recipe.name.length - 1 === recipe.itemPointer) {
+			recipe.itemPointer = 0;
+		} else if (recipe.name.length !== 1) {
+			recipe.itemPointer++;
+		}
+		renderItem(id, false);
+	}
+}
+
+var backwardRecipes = function() {
+	for (var i = 0; i < animatedRecipes.length; i++) {
+		var id = animatedRecipes[i];
+		var recipe = recipes[id];
+		var currentRecipe = recipe.recipePointer;
+		if (recipe.recipePointer === 0) {
+			recipe.recipePointer = recipe.recipes.length - 1;
+		} else if (recipe.recipes.length !== 1) {
+			recipe.recipePointer--;
+		}
+		var currentItem = recipe.itemPointer;
+		if (recipe.itemPointer === 0) {
+			recipe.itemPointer = recipe.name.length - 1;
+		} else if (recipe.name.length !== 1) {
+			recipe.itemPointer--;
+		}
+		renderItem(id, false);
+	}
+}
+
+var setPauseIcon = function() {
+	if (isPause) {
+		$('#pause-recipes')
+			.removeClass('fa-pause')
+			.addClass('fa-play');
+	} else {
+		$('#pause-recipes')
+			.removeClass('fa-play')
+			.addClass('fa-pause');
 	}
 }

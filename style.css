@@ -303,3 +303,50 @@ button:hover {
 
 	color: #b3b3b3;
 }
+
+#control-menu {
+	padding: 15px;
+	position: fixed;
+	left: 0;
+	top: 40%;
+	background: #1F1F1F;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#control-menu i.control-label {
+	color: #ddd;
+	margin-right: 5px;
+}
+
+.control-menu__row {
+	margin-bottom: 5px;
+
+	text-align: center;
+}
+
+select {
+	padding: 3px;
+	border-radius: 5px;
+}
+
+.container.container-width-3 {
+	max-width: 814px;
+}
+
+.container.container-width-4 {
+	max-width: 1090px;
+}
+
+
+i.control-button {
+	padding: 7px;
+	background: #ccc;
+	border-radius: 7px;
+
+	cursor: pointer;
+}
+
+i.control-button:active {
+	background: #eee;
+}
