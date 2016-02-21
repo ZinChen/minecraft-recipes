@@ -148,6 +148,8 @@ var changeItemAttributes = function(id) {
 			.css('background-position', item.bgPos)
 	} else {
 		var components = prepareRecipe(recipe.recipes[recipePos]);
+		$this.find('.recipe-title')
+			.html(item.name);
 		$this.find('.recipe-result .inner-item')
 			.attr('title', item.name)
 			.css('background-position', item.bgPos);
