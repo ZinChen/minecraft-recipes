@@ -35,7 +35,7 @@ $(function() {
 	});
 
 	$('#search-recipe').keyup(function() {
-		var needle = 
+		var needle =
 			$(this)
 				.val()
 				.trim()
@@ -108,7 +108,7 @@ $(function() {
 		var name = items[itemId].name;
 		$('.container').append(itemTpl({name: name, bg: items[itemId].bgPos, i: i}));
 	});
-	
+
 	setInterval(function() {
 		if (isPause) { return; }
 		forwardRecipes();
@@ -154,7 +154,7 @@ var changeItemTemplate = function(id) {
 		$this.removeAttr('title');
 		$this.html(recipeTpl({
 			name: item.name,
-			stack: 
+			stack:
 				(recipe.stack > 1) ? recipe.stack : null,
 			bg: item.bgPos,
 			components: prepareRecipe(recipe.recipes[recipePos])
@@ -223,16 +223,27 @@ var foundRecipes = function(needle) {
 		if (name.indexOf(needle) > -1) {
 			foundItems.push(i);
 		}
-	};
+	}
 	for (var i = 0; i < recipes.length; i++) {
-		recipes[i].name.forEach(function(name){
+		recipes[i].name.forEach(function(name) {
 			if(foundItems.indexOf(name) > -1 &&
 				foundRecipes.indexOf(i) < 0
 				) {
 				foundRecipes.push(i);
 			}
 		});
-	};
+		recipes[i].recipes.forEach(function(recipe) {
+			if (recipe.length) {
+				recipe.forEach(function(item) {
+					if(foundItems.indexOf(item) > -1 &&
+						foundRecipes.indexOf(i) < 0
+						) {
+						foundRecipes.push(i);
+					}
+				});
+			}
+		});
+	}
 	return foundRecipes;
 }
 
