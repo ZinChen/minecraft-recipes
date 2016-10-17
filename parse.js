@@ -146,6 +146,19 @@ JSON.stringify(bg);
 //bg = JSON.parse(bgdata);
 //for (var b in bg) {$('.item').first().clone().appendTo('.container').find('.inner-item').css('background-position', bg[b]);}
 
+// Post Processing
+// convert names in recipes to ids, based on item index in bg variable
+
+var recipes = result;
+
+var items = [];
+var itemsIndex = [];
+for (var item in bg) {
+	items.push({'name': item, 'bgPos': bg[item]});
+	itemsIndex.push(item);
+}
+
+// TODO: last time this does not merged bow and scissors
 var mergeItems = function() {
 	var prev = recipes[1];
 	recipes.forEach(function(recipe, i, recipes) {
@@ -157,3 +170,26 @@ var mergeItems = function() {
 		prev = recipe;
 	});
 };
+mergeItems();
+
+for (var i = 0; i < recipes.length; i++) {
+	var recipe = recipes[i];
+	recipes[i].name = replaceNamesWithId(recipes[i].name);
+
+	for (var j = 0; j < recipe.recipes.length; j++) {
+		recipes[i].recipes[j] = replaceNamesWithId(recipes[i].recipes[j]);
+	}
+}
+
+for (var i = 0; i < recipes.length; i++) {
+	if (recipes[i].name.length > 1) {
+		console.log(i);
+	}
+}
+
+function replaceNamesWithId(items) {
+	for (var i = 0; i < items.length; i++) {
+		items[i] = itemsIndex.indexOf(items[i]);
+	}
+	return items;
+}
