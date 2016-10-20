@@ -22,23 +22,16 @@
 		<h2 class="recipes-header">Crafting Recipes</h2>
 		<input id="search-recipe" class="search-input" type="text" placeholder="Search item">
 		<div class="row">
-			<button id="toggle-recipes-view" class="pull-right">Expand all</button>
-		</div>
-		<div id="control-menu">
-			<div class="control-menu__row">
-				<i class="control-label fa fa-th-large" title="Row Width"></i>
-				<select id="item-per-row">
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4" selected>4</option>
-				</select>
-			</div>
-			<div class="control-menu__row">
-				<i id="backward-recipes" class="control-button fa fa-backward"></i>
-				<i id="forward-recipes" class="control-button fa fa-forward"></i>
-			</div>
-			<div class="control-menu__row">
-				<i id="pause-recipes" class="control-button fa fa-pause pull-left"></i>
+			<div class="control-menu">
+				<div class="control-width">
+					<i class="control-label fa fa-th-large" title="Row Width"></i>
+					<select id="item-per-row">
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4" selected>4</option>
+					</select>
+				</div>
+				<button id="toggle-recipes-view">Expand all</button>
 			</div>
 		</div>
 	</div>
@@ -67,6 +60,17 @@
 					</div>
 				</div>
 			</div>
+			<div class="additional-info">
+				{{#if isNotOneRecipe}}
+					<div class="recipe-control">
+						<i class="backward-recipes control-button fa fa-backward"></i>
+						<i class="pause-recipes control-button fa fa-pause"></i>
+						<i class="forward-recipes control-button fa fa-forward"></i>
+					</div>
+				{{/if}}
+				<div class="recipe-counter">
+					<span class="current-recipe-count">{{currentRecipe}}</span>/{{recipesCount}} recipe</div>
+				</div>
 		</div>
 	</script>
 	<script>

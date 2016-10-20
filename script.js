@@ -46,7 +46,7 @@ $(function() {
 		}
 	});
 
-	$('.container').delegate('.item', 'click', function() {
+	$('.container').on('click', '.item', function() {
 		pause();
 		var $this = $(this);
 		var id = $this.attr('id');
@@ -102,15 +102,18 @@ $(function() {
 		}
 	});
 
-	$('#forward-recipes').click(function() {
+	$('.container').on('click', '.forward-recipes', function(e) {
+		e.stopPropagation();
 		forwardRecipes();
 	});
 
-	$('#backward-recipes').click(function() {
+	$('.container').on('click', '.backward-recipes', function(e) {
+		e.stopPropagation();
 		backwardRecipes();
 	});
 
-	$('#pause-recipes').click(function() {
+	$('.container').on('click', '.pause-recipes', function(e) {
+		e.stopPropagation();
 		isPauseButtonPressed = !isPause;
 		togglePause();
 		setPauseIcon();
@@ -177,8 +180,12 @@ var changeItemTemplate = function(id) {
 			stack:
 				(recipe.stack > 1) ? recipe.stack : null,
 			bg: item.bgPos,
-			components: prepareRecipe(recipe.recipes[recipePos])
+			components: prepareRecipe(recipe.recipes[recipePos]),
+			recipesCount: recipe.recipes.length,
+			currentRecipe: recipePos + 1,
+			isNotOneRecipe: recipe.recipes.length > 1
 		}));
+		console.log(recipe.recipes.length > 1);
 	}
 };
 
@@ -209,6 +216,7 @@ var changeItemAttributes = function(id) {
 				.css('background-position', item.bg);
 			}
 		});
+		$this.find('.current-recipe-count').html(recipePos + 1);
 	}
 };
 
@@ -343,11 +351,11 @@ var backwardRecipes = function() {
 
 var setPauseIcon = function() {
 	if (isPause) {
-		$('#pause-recipes')
+		$('.pause-recipes')
 			.removeClass('fa-pause')
 			.addClass('fa-play');
 	} else {
-		$('#pause-recipes')
+		$('.pause-recipes')
 			.removeClass('fa-play')
 			.addClass('fa-pause');
 	}
