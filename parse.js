@@ -8,10 +8,8 @@ var bg = {};
 var getName = function($this) {
 	var name = '';
 	if ($this.data('minetip-text') && $this.data('minetip-title')) {
-		name =
-			removeSymbolsFromBegin($this.data('minetip-text'),'&7')
-			+ ' '
-			+ $this.data('minetip-title');
+		name = removeSymbolsFromBegin($this.data('minetip-text'),'&7') + ' ' +
+				$this.data('minetip-title');
 	} else if($this.data('minetip-title')) {
 		name = $this.data('minetip-title');
 		if (name === '&d' || name === '&b') {
@@ -34,14 +32,14 @@ var getName = function($this) {
 		name = "Damaged " + name;
 	}
 	return name;
-}
+};
 
 var removeSymbolsFromBegin = function(s, symbols) {
 	if (s.indexOf(symbols) === 0) {
 		s = s.substr(symbols.length);
 	}
 	return s;
-}
+};
 
 //$('.load-page-content').each(function() {
 //	var $this = $(this);
@@ -84,10 +82,11 @@ $('.load-page-content> table > tbody > tr').each(function() {
 	});
 
 	var $title = $this.closest('.load-page').find('.mw-headline');
+	var category;
 	if($title.has('a').length) {
-		var category = $title.find('a').html();
+		category = $title.find('a').html();
 	} else {
-		var category = $title.html();
+		category = $title.html();
 	}
 
 	var recipes = [];
@@ -97,7 +96,7 @@ $('.load-page-content> table > tbody > tr').each(function() {
 	}
 	for (var i = 0; i < count; i++) {
 		recipes.push([]);
-	};
+	}
 
 //	TODO add category "closest .load-page-content"
 //	get css background .find('.mcui-input > .mcui-row > .invslot .invslot-item a span').first().css('background-position');

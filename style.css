@@ -33,6 +33,10 @@ body,
 	float: right;
 }
 
+.pull-left {
+	float: left;
+}
+
 img,
 .inner-item {
 	image-rendering: optimizeSpeed;
@@ -312,6 +316,7 @@ button:hover {
 	background: #1F1F1F;
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
+	z-index: 100;
 }
 
 #control-menu i.control-label {
