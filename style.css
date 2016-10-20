@@ -105,7 +105,7 @@ button:hover {
 	margin: 5px;
 	padding: 7px;
 
-	vertical-align: top;
+	vertical-align: middle;
 	background-color: #dddddd;
 	border: 4px solid #7e7e7e;
 	border-radius: 17px;
@@ -147,7 +147,7 @@ button:hover {
 	background-image: url(img/InvSprite.png);
 	width: 32px;
 	height: 32px;
-	position: absolute;
+	position: relative;
 /*	background-position: -704px -1184px;*/
 }
 
@@ -164,8 +164,13 @@ button:hover {
 	transform: none;
 }
 
+.item-recipe {
+	padding: 10px;
+}
+
 .components {
-	display: inline-block;
+	font-size: 0;
+	display: table-cell;
 	width: 124px;
 	margin: 5px;
 }
@@ -174,7 +179,7 @@ button:hover {
 	width: 32px;
 	height: 32px;
 	display: inline-block;
-	margin: -3px -2px;
+	// margin: -3px -2px;
 	padding: 2px;
 
 
@@ -221,39 +226,47 @@ button:hover {
 	border-right-style: none;
 }
 
-.recipe-result {
-	width: 32px;
-	height: 32px;
-	display: inline-block;
-	margin: 40px 15px;
-	transform: scale(1.7);
-	margin-bottom: 40px;
-	margin-left: 15px;
+.recipe-body {
+	display: table;
 }
 
 .recipe-arrow {
-	display: inline-block;
-	position: relative;
-	width: 0;
-	height: 0;
-	margin-left: 17px;
-	margin-bottom: 35px;
-	border-top: 20px solid transparent;
-	border-bottom: 20px solid transparent;
-	border-left: 20px solid #b3b3b3;
-	border-radius: 0.3em 0em 0em 0.3em;
+	display: table-cell;
+	vertical-align: middle;
+	color: #b3b3b3;
 }
 
-.recipe-arrow:before {
-	content: " ";
-	position: absolute;
-	left: -52px;
-	top: -5px;
-	width: 2.0em;
-	height: 0.6em;
-	position: absolute;
-	background: #b3b3b3;
+.recipe-result {
+	display: table-cell;
+	padding: 0 15px;
+	vertical-align: middle;
+	font-size: 12px;
+	transform: scale(1.7);
 }
+
+// .recipe-arrow {
+// 	display: inline-block;
+// 	position: relative;
+// 	width: 0;
+// 	height: 0;
+// 	margin-left: 17px;
+// 	margin-bottom: 35px;
+// 	border-top: 20px solid transparent;
+// 	border-bottom: 20px solid transparent;
+// 	border-left: 20px solid #b3b3b3;
+// 	border-radius: 0.3em 0em 0em 0.3em;
+// }
+
+// .recipe-arrow:before {
+// 	content: " ";
+// 	position: absolute;
+// 	left: -52px;
+// 	top: -5px;
+// 	width: 2.0em;
+// 	height: 0.6em;
+// 	position: absolute;
+// 	background: #b3b3b3;
+// }
 
 .search-input {
 	outline: none;
@@ -280,9 +293,7 @@ button:hover {
 }
 
 .recipe-title {
-	height: 55px;
-
-	margin-top: 10px;
+	margin-bottom: 10px;
 
 	color: #555;
 	text-align: center;
@@ -297,15 +308,6 @@ button:hover {
 	color: #fff;
 	text-shadow: 1px 1px 0 #000, 0px 1px 0 #000;
 	line-height: 7px;
-}
-
-.fa-pointer {
-	margin-top: 38px;
-	margin-left: -10px;
-
-	vertical-align: top;
-
-	color: #b3b3b3;
 }
 
 #control-menu {

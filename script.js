@@ -9,11 +9,12 @@ var toggledRecipes = false;
 var isOnItem;
 var playTimeout;
 
+// Unused
 Handlebars.registerHelper('components', function(items, options) {
 	var rowDiv;
 	for (var i = 0; i < items.length; i++) {
-		isDivisibleByThree = 3%i == 0;
-		if (i == 0 || isDivisibleByThree) {
+		isDivisibleByThree = 3%i === 0;
+		if (i === 0 || isDivisibleByThree) {
 			rowDiv = $('<div class="component-row">');
 		}
 	}
@@ -61,7 +62,7 @@ $(function() {
 				.trim()
 				.toLowerCase();
 
-		if (needle.length == 0) {
+		if (needle.length === 0) {
 			showAllRecipes();
 			return;
 		}
